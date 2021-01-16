@@ -1,4 +1,5 @@
 let zadaci = [];
+let searchActive = false;
 const api_route = 'http://localhost/akademija-generacija-5/api';
 
 function citajZadatke() {
@@ -11,14 +12,14 @@ function citajZadatke() {
   });
 }
 
-function prikaziZadatke() {
+function prikaziZadatke(zadaci = zadaci) {
   // let tabela_body = document.getElementById('tabela_svih_body');
   let tabela_body = $('#tabela_svih_body');
   let tabela = [];
   zadaci.forEach((zadatak, i) => {
     let zavrseno_chk = '';
     let klasa_zavrseno = '';
-    if (zadatak.zavrseno === 'true') {
+    if (zadatak.zavrseno === 'true' || zadatak.zavrseno === true) {
       zavrseno_chk = 'checked';
       klasa_zavrseno = 'zavrseno';
     }
@@ -120,9 +121,8 @@ document
       zavrseno: false,
     };
     zadaci.push(novi_zadatak);
-    prikaziZadatke();
 
-    updateDB();
+    updateDB().then(() => prikaziZadatke());
     $('#modal_dodavanje').modal('hide');
     isprazniPolja('dodavanje');
   });

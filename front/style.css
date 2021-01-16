@@ -10,3 +10,8 @@
 tr.zavrseno {
   background-color: #d4edda;
 }
+
+.table.table-search {
+  background-color: whitesmoke;
+  margin-bottom: 0;
+}
