@@ -1,7 +1,6 @@
 <?php
-if (file_put_contents('../todo.db', json_encode(($_POST['zadaci'])))) {
-  echo 'SUCCESS';
+if (file_put_contents('../db/todo.db', json_encode(($_POST['zadaci'])))) {
+  echo 'Uspješan upis u bazu';
 } else {
-  echo json_encode(($_POST['zadaci']));
-  echo 'ZLO I NAOPAKO (vjerovatno opet đavolji permissioni)!';
+  echo 'Nešto nije bilo u redu sa upisom u bazu...';
 }

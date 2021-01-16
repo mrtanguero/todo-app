@@ -1,3 +1,2 @@
 <?php 
-    echo file_get_contents('../todo.db');
-?>
+    echo file_get_contents('../db/todo.db');

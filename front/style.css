@@ -8,7 +8,9 @@
 }
 
 tr.zavrseno {
-  background-color: #d4edda;
+  /* background-color: #d4edda; */
+  text-decoration: line-through;
+  color: rgb(131, 131, 131);
 }
 
 .table.table-search {
