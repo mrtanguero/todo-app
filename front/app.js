@@ -9,7 +9,7 @@ let searchActive = false;
 const searchText = document.getElementById('search-text');
 const searchOpis = document.getElementById('search-opis');
 const searchZavrseno = document.getElementById('search-zavrseno');
-const clearSearch = document.querySelector('.btn-clear-search');
+const clearSearchBtn = document.querySelector('.btn-clear-search');
 const checkLabel = document.querySelector('.form-check-label');
 
 // Deep copy arraya koji ima objekte kao elemente
@@ -167,6 +167,24 @@ citajZadatke().then(() => {
   prikaziZadatke();
 });
 
+function clearSearch() {
+  searchText.value = '';
+  searchOpis.value = '';
+  searchZavrseno.checked = false;
+  checkActive = false;
+  searchActive = false;
+  clearSearchBtn.classList.remove('btn-success');
+  clearSearchBtn.classList.add('disabled', 'btn-secondary');
+  checkLabel.textContent = 'Prikaži samo završene';
+  prikaziZadatke();
+}
+
+function activateSearch() {
+  searchActive = true;
+  clearSearchBtn.classList.remove('disabled', 'btn-secondary');
+  clearSearchBtn.classList.add('btn-success');
+}
+
 // dodavanje event listener-a
 document
   .getElementById('dodaj_novi_forma')
@@ -202,29 +220,21 @@ document
 
 // Event listeneri za search
 searchText.addEventListener('keyup', () => {
-  searchActive = true;
+  activateSearch();
   prikaziZadatke(filterZadaci());
 });
 
 searchOpis.addEventListener('keyup', () => {
-  searchActive = true;
+  activateSearch();
   prikaziZadatke(filterZadaci());
 });
 
 searchZavrseno.addEventListener('change', () => {
-  searchActive = true;
+  activateSearch();
   checkActive = true;
   if (searchZavrseno.checked) checkLabel.textContent = 'Samo završeni';
   else checkLabel.textContent = 'Samo nezavršeni';
   prikaziZadatke(filterZadaci());
 });
 
-clearSearch.addEventListener('click', () => {
-  searchText.value = '';
-  searchOpis.value = '';
-  searchZavrseno.checked = false;
-  checkActive = false;
-  searchActive = false;
-  checkLabel.textContent = 'Prikaži samo završene';
-  prikaziZadatke();
-});
+clearSearchBtn.addEventListener('click', clearSearch);

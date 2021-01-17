@@ -17,3 +17,7 @@ tr.zavrseno {
   background-color: whitesmoke;
   margin-bottom: 0;
 }
+
+.btn.disabled {
+  cursor: default;
+}
